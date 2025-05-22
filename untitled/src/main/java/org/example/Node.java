@@ -6,6 +6,7 @@ public class Node<T> {
     Node<T> right;
     int height;
     boolean color; // true for red, false for black
+    Node<T> parent;
 
     public Node(T data) {
         this.data = data;
