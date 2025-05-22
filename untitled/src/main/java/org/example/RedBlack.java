@@ -1,5 +1,9 @@
 package org.example;
 
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Queue;
+
 public class RedBlack<T extends Comparable<T>> implements Tree<T> {
     private Node<T> root;
     private int size;
@@ -7,6 +11,9 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
         this.root = null;
         this.size = 0;
     }
+    private static final String ANSI_BLACK = "\u001B[30m";
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_RED = "\u001B[31m";
    @Override
     public int getSize() {
         return size;
@@ -408,4 +415,31 @@ private void deleteFixup(Node<T> x) {
         }
         return root.height;
     }
+    public void printHierarchical() {
+        printHierarchicalHelper(root, "", true);
+    }
+    
+    private void printHierarchicalHelper(Node<T> node, String prefix, boolean isLast) {
+        if (node != null) {
+            String color = node.color ? ANSI_RED : ANSI_BLACK;
+            System.out.println(prefix + (isLast ? "└── " : "├── ") + color + node.data + ANSI_RESET);
+            
+            String childPrefix = prefix + (isLast ? "    " : "│   ");
+            
+            if (node.left != null || node.right != null) {
+                if (node.right != null) {
+                    printHierarchicalHelper(node.right, childPrefix, node.left == null);
+                } else {
+                    System.out.println(childPrefix + (node.left == null ? "" : "├── ") + "null");
+                }
+                
+                if (node.left != null) {
+                    printHierarchicalHelper(node.left, childPrefix, true);
+                } else if (node.right != null) {
+                    System.out.println(childPrefix + "└── null");
+                }
+            }
+        }
+    }
+
 }
