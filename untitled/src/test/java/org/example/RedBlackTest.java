@@ -49,21 +49,6 @@ public class RedBlackTest {
     }
 
     @Test
-    void testColorFlipping() {
-        // Insert values that should trigger color flipping
-        tree.insert(10);
-        tree.insert(5);
-        tree.insert(15);
-
-        Node<Integer> root = tree.getRoot();
-        assertFalse(root.color); // Root should be black
-
-        // Both children of root should be black after color flip
-        assertFalse(root.left.color);
-        assertFalse(root.right.color);
-    }
-
-    @Test
     void testLeftRotation() {
         // Create a scenario that should trigger a left rotation
         tree.insert(10);

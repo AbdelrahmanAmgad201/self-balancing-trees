@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         RedBlack<Integer> tree = new RedBlack<>();  // Use the interface type
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 200; i++) {
             tree.insert(i);
         }
         tree.printHierarchical();;
@@ -12,7 +12,7 @@ public class Main {
         System.out.println("Tree height: " + tree.getHeight());
 
 
-        for(int i = 0; i < 100; i+=2) {
+        for(int i = 0; i < 200; i+=2) {
             tree.delete(i);
         }
         tree.printHierarchical();;
