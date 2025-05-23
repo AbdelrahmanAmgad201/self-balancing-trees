@@ -164,6 +164,7 @@ public class RedBlackTest {
         for (int i = 0; i < 5; i++) {
             tree.delete(i);
         }
+        System.out.println("After deletion:");
         tree.inorderTraversal();
         assertEquals(5, tree.getSize());
 
