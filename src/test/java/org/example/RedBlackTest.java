@@ -142,7 +142,7 @@ public class RedBlackTest {
             tree.insert(i);
         }
 
-        tree.inorderTraversal();
+
         assertEquals(10, tree.getSize());
         assertFalse(tree.getRoot().color);
         // Delete half the nodes
@@ -150,7 +150,7 @@ public class RedBlackTest {
             tree.delete(i);
         }
         System.out.println("After deletion:");
-        tree.inorderTraversal();
+
         assertEquals(5, tree.getSize());
 
 

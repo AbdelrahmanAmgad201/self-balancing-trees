@@ -36,14 +36,14 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
             return false; // Don't insert duplicates
         }
 
-        // Standard BST insertion
+    
         Node<T> newNode = new Node<>(data);
-        newNode.color = true; // New nodes are always red
+        newNode.color = true;
         newNode.height = 1;
 
         if (root == null) {
             root = newNode;
-            root.color = false; // Root is always black
+            root.color = false; 
             size++;
             return true;
         }
@@ -60,7 +60,7 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
             } else if (cmp > 0) {
                 current = current.right;
             } else {
-                // Duplicate found (shouldn't happen due to check above)
+              
                 return false;
             }
         }
@@ -74,7 +74,6 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
             parent.right = newNode;
         }
 
-        // Fix Red-Black tree violations
         insertFixup(newNode);
 
 
@@ -88,6 +87,7 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
             if (z.parent == z.parent.parent.left) {
                 // Parent is left child of grandparent
                 Node<T> uncle = z.parent.parent.right;
+                
 
                 if (uncle != null && isRed(uncle)) {
                     // Case 1: Uncle is red - recolor
@@ -96,9 +96,8 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
                     z.parent.parent.color = true;
                     z = z.parent.parent;
                 } else {
-                    // Uncle is black or null
+                    // Case 2: z is right child - left rotate to make it left child
                     if (z == z.parent.right) {
-                        // Case 2: z is right child - left rotate to make it left child
                         z = z.parent;
                         leftRotate(z);
                     }
@@ -323,33 +322,6 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
         return node;
     }
 
-    private void updateAllHeights() {
-        if (root != null) {
-            updateHeightsPostOrder(root);
-        }
-    }
-
-    private void updateHeightsPostOrder(Node<T> node) {
-        if (node == null) return;
-
-        updateHeightsPostOrder(node.left);
-        updateHeightsPostOrder(node.right);
-        node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
-    }
-
-    // Fixed inorder traversal - should visit left, then node, then right
-    public void inorderTraversal() {
-        inorderTraversal(root);
-    }
-
-    private void inorderTraversal(Node<T> node) {
-        if (node == null) return;
-
-        inorderTraversal(node.left);    // Visit left subtree first
-        System.out.println(node.data + " " + (node.color ? "RED" : "BLACK"));
-        inorderTraversal(node.right);   // Visit right subtree last
-    }
-
     private int getHeight(Node<T> node) {
         if (node == null) {
             return 0;
@@ -395,15 +367,13 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
         return null; // Node not found
     }
 
-    public int getTreeHeight() {
-        return getHeight(root);
+    private int getTreeHeight(Node<T> n) {
+        if(n==null) return 0;
+        return 1+Math.max(getTreeHeight(n.left),getTreeHeight(n.right));
     }
 
     public int getHeight() {
-        if (root == null) {
-            return 0;
-        }
-        return root.height;
+        return getTreeHeight(root);
     }
 
     public void printHierarchical() {
