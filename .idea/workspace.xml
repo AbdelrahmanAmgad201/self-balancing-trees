@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="28eadfed-66f9-4e2c-93fa-a9b1fe6c8196" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RedBlack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RedBlack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/RedBlackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/RedBlackTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/TreeComparisonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/TreeComparisonTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +50,8 @@
     "JUnit.RedBlackTest.executor": "Run",
     "JUnit.TreeComparisonTest.executor": "Run",
     "JUnit.TreeComparisonTest.testBulkInsertAndDelete.executor": "Run",
+    "JUnit.TreeComparisonTest.testPerformanceAcrossSizes.executor": "Run",
+    "JUnit.TreeComparisonTest.testSizeAndHeightAcrossSizes.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -81,6 +83,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TreeComparisonTest.testPerformanceAcrossSizes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="untitled" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.TreeComparisonTest" />
+      <option name="METHOD_NAME" value="testPerformanceAcrossSizes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TreeComparisonTest.testSizeAndHeightAcrossSizes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="untitled" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.TreeComparisonTest" />
+      <option name="METHOD_NAME" value="testSizeAndHeightAcrossSizes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="self-balancing-trees" />
       <method v="2">
@@ -94,6 +128,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TreeComparisonTest.testPerformanceAcrossSizes" />
+        <item itemvalue="JUnit.TreeComparisonTest.testSizeAndHeightAcrossSizes" />
         <item itemvalue="JUnit.TreeComparisonTest.testBulkInsertAndDelete" />
       </list>
     </recent_temporary>

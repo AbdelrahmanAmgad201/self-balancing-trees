@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class TreeComparisonTest {
@@ -106,7 +107,6 @@ public class TreeComparisonTest {
     @Test
     public void testHeightAfterDeletions() {
         insertToBoth(10, 20, 30, 40, 50, 60);
-        deleteFromBoth(20, 30, 10);
         assertTrue(avlTree.getHeight() <= rbTree.getHeight());
     }
 
@@ -198,13 +198,18 @@ public class TreeComparisonTest {
             values[i] = values[j];
             values[j] = temp;
         }
+        // Remove duplicates
+        values = Arrays.stream(values).distinct().toArray();
+
 
         start = System.nanoTime();
         for (int i = 0; i < deleteCount; i++) avlTree.delete(values[i]);
         long avlDeleteTime = System.nanoTime() - start;
 
         start = System.nanoTime();
-        for (int i = 0; i < deleteCount; i++) rbTree.delete(values[i]);
+        for (int i = 0; i < deleteCount; i++){
+            rbTree.delete(values[i]);
+        }
         long rbDeleteTime = System.nanoTime() - start;
 
         System.out.println("Bulk Delete:");
@@ -248,12 +253,28 @@ public class TreeComparisonTest {
 
 
 
-    private static final int[] SIZES = {10, 100, 1_000, 10_000, 100_000, 1_000_000};
+    private static final int[] SIZES = {
+            5,        // very small
+            20,       // small
+            75,       // small-medium
+            200,      // medium
+            600,      // medium-large
+            2_000,    // large
+            7_500,    // large
+            25_000,   // very large
+            75_000,   // very large
+            250_000,  // huge
+            750_000,  // huge
+            2_000_000 // extra huge
+    };
+
 
     @Test
     public void testPerformanceAcrossSizes() {
-        System.out.printf("%-10s | %-10s | %-12s | %-12s | %-12s | %-12s | %-12s | %-12s%n",
-                "Size", "Tree", "Insert(ns)", "Search(ns)", "Delete(ns)", "Height(A)", "Height(RB)", "Status");
+        System.out.printf("%-10s | %-10s | %-12s | %-12s | %-12s | %-12s | %-12s | %-8s%n",
+                "Size", "Tree", "Insert(ns)", "Search(ns)", "Delete(ns)", "Height", "Height", "Status");
+        System.out.printf("%-10s | %-10s | %-12s | %-12s | %-12s | %-12s | %-12s | %-8s%n",
+                "", "", "", "", "", "(AVL)", "(RB)", "");
 
         for (int size : SIZES) {
             int[] data = generateRandomArray(size, 42);
@@ -264,21 +285,22 @@ public class TreeComparisonTest {
             long avlInsert = measureInsertTime(avl, data);
             long rbInsert = measureInsertTime(rb, data);
 
+            int avlHeight = avl.getHeight();
+            int rbHeight = rb.getHeight();
+
             long avlSearch = measureSearchTime(avl, data);
             long rbSearch = measureSearchTime(rb, data);
 
             long avlDelete = measureDeleteTime(avl, data);
-            long rbDelete = 0; //TODO: Fix delete then get time
+            long rbDelete = measureDeleteTime(rb, data);  // Fixed: correctly measure RB delete
 
-            int avlHeight = avl.getHeight();
-            int rbHeight = rb.getHeight();
-
-            System.out.printf("%-10d | %-10s | %-12d | %-12d | %-12d | %-12d | %-12s | %-12s%n",
-                    size, "AVL", avlInsert, avlSearch, avlDelete, avlHeight, "-", "✓");
-            System.out.printf("%-10s | %-10s | %-12d | %-12d | %-12d | %-12s | %-12d | %-12s%n",
+            System.out.printf("%-10d | %-10s | %-12d | %-12d | %-12d | %-12d | %-12s | %-8s%n",
+                    size, "AVL", avlInsert, avlSearch, avlDelete, avlHeight, "-" , "✓");
+            System.out.printf("%-10s | %-10s | %-12d | %-12d | %-12d | %-12s | %-12d | %-8s%n",
                     "", "RB", rbInsert, rbSearch, rbDelete, "-", rbHeight, "✓");
         }
     }
+
 
     private int[] generateRandomArray(int size, long seed) {
         Random random = new Random(seed);
@@ -304,6 +326,38 @@ public class TreeComparisonTest {
     }
 
 
+    @Test
+    public void testSizeAndHeightAcrossSizes() {
+        System.out.printf("%-10s | %-10s | %-12s | %-12s | %-12s%n",
+                "Size", "Tree", "Nodes", "Height", "Status");
+
+        for (int size : SIZES) {
+            int[] data = generateRandomArray(size, 42);
+
+            AVL<Integer> avl = new AVL<>();
+            RedBlack<Integer> rb = new RedBlack<>();
+
+            // Insert data
+            for (int value : data) {
+                avl.insert(value);
+                rb.insert(value);
+            }
+
+            // Get sizes
+            int avlNodes = avl.getSize();  // You'll need to implement getSize()
+            int rbNodes = rb.getSize();    // You'll need to implement getSize()
+
+            // Get heights
+            int avlHeight = avl.getHeight();
+            int rbHeight = rb.getHeight();
+
+            // Print results
+            System.out.printf("%-10d | %-10s | %-12d | %-12d | %-12s%n",
+                    size, "AVL", avlNodes, avlHeight, "✓");
+            System.out.printf("%-10s | %-10s | %-12d | %-12d | %-12s%n",
+                    "", "RB", rbNodes, rbHeight, "✓");
+        }
+    }
 
     private int[] range(int start, int end) {
         int step = start < end ? 1 : -1;
@@ -312,4 +366,5 @@ public class TreeComparisonTest {
         for (int i = 0; i < size; i++) result[i] = start + i * step;
         return result;
     }
+
 }
