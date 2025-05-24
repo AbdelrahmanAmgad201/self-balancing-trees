@@ -77,8 +77,7 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
         // Fix Red-Black tree violations
         insertFixup(newNode);
 
-        // Update heights from root
-        updateAllHeights();
+
 
         size++;
         return true;
@@ -157,10 +156,6 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
         // Put x on y's left
         y.left = x;
         x.parent = y;
-
-        // Update heights
-        x.height = 1 + Math.max(getHeight(x.left), getHeight(x.right));
-        y.height = 1 + Math.max(getHeight(y.left), getHeight(y.right));
     }
 
     private void rightRotate(Node<T> y) {
@@ -186,9 +181,6 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
         x.right = y;
         y.parent = x;
 
-        // Update heights
-        y.height = 1 + Math.max(getHeight(y.left), getHeight(y.right));
-        x.height = 1 + Math.max(getHeight(x.left), getHeight(x.right));
     }
 
     public boolean delete(T data) {
@@ -234,8 +226,7 @@ public class RedBlack<T extends Comparable<T>> implements Tree<T> {
             deleteFixup(x, xParent);
         }
 
-        // Update heights from root
-        updateAllHeights();
+       
 
         size--;
         return true;
