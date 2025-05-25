@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28eadfed-66f9-4e2c-93fa-a9b1fe6c8196" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/untitled/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/untitled/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/untitled/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/AVL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/AVL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RedBlack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RedBlack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/RedBlackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/RedBlackTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/TreeComparisonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/TreeComparisonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +51,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Faculty of Engineering, Alexandria University/Term/Data Structures and Algorithms/lab4/self-balancing-trees/src"
   }

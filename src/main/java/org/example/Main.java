@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.CommandInterface.IntitalizeMenu;
+import org.example.CommandInterface.IntitalizeMenu;1
 import org.example.CommandInterface.State;
 
 import java.util.Scanner;

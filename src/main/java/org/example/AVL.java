@@ -67,6 +67,10 @@ public class AVL<T extends Comparable<T>> implements Tree<T> {
             return false;
         }
 
+        if(!search(data)) {
+            return false;
+        }
+
         root = deleteRecursive(root, data);
         return true;
     }
