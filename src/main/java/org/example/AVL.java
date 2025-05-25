@@ -10,6 +10,9 @@ public class AVL<T extends Comparable<T>> implements Tree<T> {
         if (data == null) {
             return false;
         }
+        if(search(data)) {
+            return false;
+        }
 
         if (root == null) {
             root = new Node<>(data);
